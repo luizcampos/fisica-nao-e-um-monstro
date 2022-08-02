@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta name="viewport" content="width=device-width">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>MENU</title>
+<link rel="stylesheet" type="text/css" href="css/css.css">
+<link rel="stylesheet" type="text/css" href="css/css.css" media="(max-width: 1000px)">
+<link rel="stylesheet" type="text/css" href="css/css.css" media="(max-width: 480px)">
+<link rel="stylesheet" type="text/css" href="css/css.css" media="(max-width: 300px)">
+
+<link href="jquery-mobile/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css" />
+<link href="jquery-mobile/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css" />
+<script src="jquery-mobile/jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="jquery-mobile/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div data-role="page" id="page">
+  <div data-role="header">
+  <font face="Aaargh">
+    <h2><center>Menu</center></h2>
+  </div>
+  <div id="fundo">
+  <div data-role="content">
+  <font face="Aaargh">
+  <center>
+  <div class="aba"><a href="minhaconta.html" > <img src="img/user.ico" widht="45px" height="45px"/></a></div>
+  <br /><br />
+  <a href="anos_materias.html"><img src="img/livro2.png" width="126" height="132" /></a> 
+  <span style="padding-left:30px">
+  
+  <a href="anos_exercicios.html" ><img src="img/exercicios2.png" width="126" height="132" />	</a>
+  <br />
+  </center>
+
+  <h3><center><span style="padding-left:5px"><b>Matérias </b>  <span style="padding-left:70px">Exercícios</h3><br />
+  
+  <center>
+   <img src="img/chat2.png" width="126" height="132"onclick="atualiza2();"/> 
+  
+  <span style="padding-left:30px">
+  
+   <img src="img/trofeu2.png" width="126" height="132" onclick="atualiza();"/> 
+  </center>
+  <h3><center><span style="padding-left:18px" >Fórum   <span style="padding-left:75px">Conquistas</h3> 
+  
+  <script>
+  
+  	function atualiza(){
+	
+		window.location.href = "monstros.html";
+		
+	}
+	
+	function atualiza2(){
+	
+		window.location.href = "home.php";
+		
+	}
+  
+  </script>
+  </div>
+  </div>
+</div>
+</body>
+</html>

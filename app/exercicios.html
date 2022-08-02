@@ -1,0 +1,1053 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Exercício</title>
+<link rel="stylesheet" type="text/css" href="css/css.css">
+
+<link href="jquery-mobile/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css" />
+<link href="jquery-mobile/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css" />
+<script src="jquery-mobile/jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="jquery-mobile/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+
+<script src="alertify/alertify.min.js"></script>
+<link rel="stylesheet" href="alertify/css/alertify.min.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" href="alertify/css/themes/default.min.css" />
+
+<script src="dist/sweetalert-dev.js"></script>
+  <link rel="stylesheet" href="dist/sweetalert.css">
+</head>
+
+<body>
+<div data-role="page" id="page">
+  <div data-role="header">
+  <font face="Aaargh">
+    <h2><center>Exercício</center></h2>
+  </div>
+  <div id="fundo">
+  <div data-role="content">
+  
+  <center>
+  <br />
+  
+   <div class="conteudo2" >
+		<div class="pergunta" id="pergunta"> 
+		</div>
+			<div class="cal2"> 
+				<a href="calculadora.html">
+				<img src="img/calculator.png" width="60px" height="60px"/>
+				</a> 
+		</div>
+		
+		<form id="exercicio" method="post">
+			<div class="alternativas">
+				<br><br><br>
+				<div class="alter">
+					<input type="submit" value="A" onclick="alterA();"/>
+				</div>
+				<div class="alterA" id="A"></div>
+				
+				<br><br><br>
+				<div class="alter">
+					<input type="submit" value="B" onclick="alterB();"/>
+				</div>
+				<div class="alterB" id="B"></div>
+				
+				<br><br><br>
+				<div class="alter">
+					<input type="submit" value="C" onclick="alterC();"/>
+				</div>
+				<div class="alterC" id="C"></div>
+				
+				<br><br><br>
+				<div class="alter">
+					<input type="submit" value="D" onclick="alterD();"/>
+				</div>
+				<div class="alterD" id="D"></div>
+
+				<br><br><br>
+				<div class="alter">
+					<input type="submit" value="E" onclick="alterE();"/>
+				</div>
+				<div class="alterE" id="E"></div>
+				
+				
+			</div>
+				<div class="seta">
+               	    <a href="anos_exercicios.html"><img src="img/seta.png" width="40" height="45" /> </a></div>
+				<!--<div class="confi">
+                	
+					<input type="submit" class="sb2" value="Próxima" onclick="proximo();"/>
+				</div>-->
+                
+		</form>
+  </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+
+var a=1;
+var b=2;
+var c=3;
+var d=4;
+var e=5;
+var letra;
+var teste = "ee";
+var resposta2;
+
+	$(document).ready(function(){
+		
+		var imagem = document.getElementById("imagem");
+		
+		exibir();
+		
+	});
+		
+		function exibir(){
+			 
+			//exibe pergunta na div 
+			$('#pergunta').fadeOut('slow', function(){
+				$('#pergunta').load('php/exibirPergunta.php', function(){
+							 
+					// fade in effect
+					$('#pergunta').fadeIn('slow');
+				});
+			});
+			
+			//exibe alternativa A
+			$('#A').fadeOut('slow', function(){
+				$('#A').load('php/alternativaA.php', function(){
+							 
+					// fade in effect
+					$('#A').fadeIn('slow');
+				});
+			});
+			
+			//exibe alternativa B
+			$('#B').fadeOut('slow', function(){
+				$('#B').load('php/alternativaB.php', function(){
+							 
+					// fade in effect
+					$('#B').fadeIn('slow');
+				});
+			});
+			
+			//exibe alternativa C
+			$('#C').fadeOut('slow', function(){
+				$('#C').load('php/alternativaC.php', function(){
+							 
+					// fade in effect
+					$('#C').fadeIn('slow');
+				});
+			});
+			
+			//exibe alternativa D
+			$('#D').fadeOut('slow', function(){
+				$('#D').load('php/alternativaD.php', function(){
+							 
+					// fade in effect
+					$('#D').fadeIn('slow');
+				});
+			});
+			//exibe alternativa E
+			$('#E').fadeOut('slow', function(){
+				$('#E').load('php/alternativaE.php', function(){
+							 
+					// fade in effect
+					$('#E').fadeIn('slow');
+				});
+			});
+		
+	}
+			function alterA(){
+		    //pega a alternativa certa do php
+			var alternativa="";
+			var resposta="";
+			var alternaA="";
+
+
+			$.ajax({
+				url: 'php/respostaCerta.php',
+				type:'POST',
+				data: {resposta: resposta},
+				success: function(resposta){
+				//recebe a alternativa correta do select do php
+				alternaA=resposta;
+				
+				if (alternaA==1)
+				{
+					if (resposta ==  1)
+					{
+						letra = "A";
+					}
+					else if (resposta ==  2)
+					{
+						letra = "B";
+					}
+					else if (resposta ==  3)
+					{
+						letra = "C";
+					}
+					else if (resposta ==  4)
+					{
+						letra = "D";
+					}
+					else if (resposta ==  5)
+					{
+						letra = "E";
+					}
+					
+					swal({   title: "Uhuul!",   text: "Parabéns, você acertou! A alternativa certa era a letra: " + letra,   imageUrl: "img/certo.png" });
+					
+					$.ajax({
+					url: 'php/pontuacaoCerta.php',
+					type:'POST',
+					data: { 
+						teste:teste, resposta:resposta
+					},
+					success: function(resposta){
+
+					//recebe id da pergunta 10 e quantos pontos tem e que ganhou um monstro
+					if(resposta==111)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 1 pergunta de 10").set('basic', true);
+						}
+						else if(resposta==112)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 2 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==113)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 3 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==114)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 4 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==105)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 5 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==106)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 6 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==107)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 7 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==108)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 8 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==109)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 9 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==1010)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 10 perguntas de 10").set('basic', true);
+						}
+	 		}
+ 		}); 
+
+					
+					//window.location.href = window.location;
+					exibir();
+				}
+				else
+				{
+					if (resposta ==  1)
+					{
+						letra = "A";
+					}
+					else if (resposta ==  2)
+					{
+						letra = "B";
+					}
+					else if (resposta ==  3)
+					{
+						letra = "C";
+					}
+					else if (resposta ==  4)
+					{
+						letra = "D";
+					}
+					else if (resposta ==  5)
+					{
+						letra = "E";
+					}
+					
+					swal({   title: "Aaaah!",   text: "Que pena, você errou. A alternativa certa era a letra: " + letra,   imageUrl: "img/errado.png" });
+					
+					$.ajax({
+					url: 'php/pontuacaoErrada.php',
+					type:'POST',
+					data: { 
+						teste:teste, resposta:resposta
+					},
+
+					success: function(resposta){
+
+					if(resposta==111)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 1 pergunta de 10").set('basic', true);
+						}
+						else if(resposta==112)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 2 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==113)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 3 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==114)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 4 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==105)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 5 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==106)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 6 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==107)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 7 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==108)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 8 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==109)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 9 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==1010)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 10 perguntas de 10").set('basic', true);
+						}
+					
+	 		}
+ 		}); 		
+					exibir();
+			    }
+				
+	 		}
+ 		}); 		
+		}
+		
+		function alterB(){
+		    //pega a alternativa certa do php
+			var alternativa="";
+			var resposta;
+			var alternaB="";
+
+
+			$.ajax({
+				url: 'php/respostaCerta.php',
+				type:'POST',
+				data: {resposta: resposta},
+				success: function(resposta){
+				//recebe a alternativa correta do select do php
+				alternaB=resposta;
+				
+				if (resposta==b)
+				{
+					if (resposta ==  1)
+					{
+						letra = "A";
+					}
+					else if (resposta ==  2)
+					{
+						letra = "B";
+					}
+					else if (resposta ==  3)
+					{
+						letra = "C";
+					}
+					else if (resposta ==  4)
+					{
+						letra = "D";
+					}
+					else if (resposta ==  5)
+					{
+						letra = "E";
+					}
+					swal({   title: "Uhuul!",   text: "Parabéns, você acertou! A alternativa certa era a letra: " + letra,   imageUrl: "img/certo.png" });
+					
+					$.ajax({
+					url: 'php/pontuacaoCerta.php',
+					type:'POST',
+					data: { 
+						teste:teste, resposta:resposta
+					},
+					success: function(resposta){
+						
+						if(resposta==111)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 1 pergunta de 10").set('basic', true);
+						}
+						else if(resposta==112)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 2 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==113)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 3 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==114)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 4 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==105)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 5 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==106)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 6 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==107)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 7 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==108)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 8 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==109)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 9 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==1010)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 10 perguntas de 10").set('basic', true);
+						}
+					
+	 		}
+ 		}); 		
+					exibir();
+				}
+				else
+				{
+					if (resposta ==  1)
+					{
+						letra = "A";
+					}
+					else if (resposta ==  2)
+					{
+						letra = "B";
+					}
+					else if (resposta ==  3)
+					{
+						letra = "C";
+					}
+					else if (resposta ==  4)
+					{
+						letra = "D";
+					}
+					else if (resposta ==  5)
+					{
+						letra = "E";
+					}
+					
+					swal({   title: "Aaaah!",   text: "Que pena, você errou. A alternativa certa era a letra: " + letra,   imageUrl: "img/errado.png" });
+					
+					$.ajax({
+					url: 'php/pontuacaoErrada.php',
+					type:'POST',
+					data: { 
+						teste:teste, resposta:resposta
+					},
+					success: function(resposta){
+						
+					if(resposta==111)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 1 pergunta de 10").set('basic', true);
+						}
+						else if(resposta==112)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 2 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==113)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 3 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==114)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 4 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==105)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 5 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==106)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 6 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==107)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 7 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==108)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 8 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==109)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 9 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==1010)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 10 perguntas de 10").set('basic', true);
+						}
+					
+	 		}
+ 		}); 
+					exibir();
+			    }
+				
+	 		}
+ 		}); 		
+		}
+		
+		function alterC(){
+		    //pega a alternativa certa do php
+			var alternativa="";
+			var resposta;
+			var alternaC="";
+
+
+			$.ajax({
+				url: 'php/respostaCerta.php',
+				type:'POST',
+				data: {resposta: resposta},
+				success: function(resposta){
+				//recebe a alternativa correta do select do php
+				alternaC=resposta;
+				
+				if (alternaC==c)
+				{
+					if (resposta ==  1)
+					{
+						letra = "A";
+					}
+					else if (resposta ==  2)
+					{
+						letra = "B";
+					}
+					else if (resposta ==  3)
+					{
+						letra = "C";
+					}
+					else if (resposta ==  4)
+					{
+						letra = "D";
+					}
+					else if (resposta ==  5)
+					{
+						letra = "E";
+					}
+
+					
+					$.ajax({
+					url: 'php/pontuacaoCerta.php',
+					type:'POST',
+					data: { 
+						teste:teste, resposta:resposta
+					},
+					success: function(resposta){
+					
+					if(resposta==111)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 1 pergunta de 10").set('basic', true);
+						}
+						else if(resposta==112)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 2 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==113)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 3 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==114)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 4 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==105)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 5 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==106)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 6 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==107)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 7 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==108)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 8 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==109)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 9 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==1010)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 10 perguntas de 10").set('basic', true);
+						}
+					
+	 		}
+ 		}); 
+					
+					swal({   title: "Uhuul!",   text: "Parabéns, você acertou! A alternativa certa era a letra: " + letra,   imageUrl: "img/certo.png" });
+					
+					exibir();
+				}
+				else
+				{
+					if (resposta ==  1)
+					{
+						letra = "A";
+					}
+					else if (resposta ==  2)
+					{
+						letra = "B";
+					}
+					else if (resposta ==  3)
+					{
+						letra = "C";
+					}
+					else if (resposta ==  4)
+					{
+						letra = "D";
+					}
+					else if (resposta ==  5)
+					{
+						letra = "E";
+					}
+					
+					swal({   title: "Aaaah!",   text: "Que pena, você errou. A alternativa certa era a letra: " + letra,   imageUrl: "img/errado.png" });
+					
+					$.ajax({
+					url: 'php/pontuacaoErrada.php',
+					type:'POST',
+					data: { 
+						teste:teste, resposta:resposta
+					},
+					success: function(resposta){
+					
+					if(resposta==111)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 1 pergunta de 10").set('basic', true);
+						}
+						else if(resposta==112)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 2 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==113)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 3 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==114)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 4 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==105)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 5 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==106)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 6 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==107)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 7 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==108)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 8 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==109)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 9 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==1010)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 10 perguntas de 10").set('basic', true);
+						}
+					
+	 		}
+ 		}); 
+					exibir();
+			    }
+				
+	 		}
+ 		}); 		
+		}
+		
+		function alterD(){
+		    //pega a alternativa certa do php
+			var alternativa="";
+			var resposta;
+			var alternaD="";
+
+
+			$.ajax({
+				url: 'php/respostaCerta.php',
+				type:'POST',
+				data: {resposta: resposta},
+				success: function(resposta){
+				//recebe a alternativa correta do select do php
+				alternaD=resposta;
+				
+				if (alternaD==d)
+				{
+					if (resposta ==  1)
+					{
+						letra = "A";
+					}
+					else if (resposta ==  2)
+					{
+						letra = "B";
+					}
+					else if (resposta ==  3)
+					{
+						letra = "C";
+					}
+					else if (resposta ==  4)
+					{
+						letra = "D";
+					}
+					else if (resposta ==  5)
+					{
+						letra = "E";
+					}
+					
+					swal({   title: "Uhuul!",   text: "Parabéns, você acertou! A alternativa certa era a letra: " + letra,   imageUrl: "img/certo.png" });
+					
+					$.ajax({
+					url: 'php/pontuacaoCerta.php',
+					type:'POST',
+					data: { 
+						teste:teste, resposta:resposta
+					},
+					success: function(resposta){
+						
+					if(resposta==111)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 1 pergunta de 10").set('basic', true);
+						}
+						else if(resposta==112)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 2 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==113)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 3 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==114)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 4 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==105)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 5 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==106)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 6 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==107)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 7 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==108)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 8 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==109)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 9 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==1010)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 10 perguntas de 10").set('basic', true);
+						}
+					
+	 		}
+ 		}); 	
+					
+					exibir();
+				}
+				else
+				{
+					if (resposta ==  1)
+					{
+						letra = "A";
+					}
+					else if (resposta ==  2)
+					{
+						letra = "B";
+					}
+					else if (resposta ==  3)
+					{
+						letra = "C";
+					}
+					else if (resposta ==  4)
+					{
+						letra = "D";
+					}
+					else if (resposta ==  5)
+					{
+						letra = "E";
+					}
+					
+					swal({   title: "Aaaah!",   text: "Que pena, você errou. A alternativa certa era a letra: " + letra,   imageUrl: "img/errado.png" });
+					
+					$.ajax({
+					url: 'php/pontuacaoErrada.php',
+					type:'POST',
+					data: { 
+						teste:teste, resposta:resposta
+					},
+					success: function(resposta){
+						
+					if(resposta==111)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 1 pergunta de 10").set('basic', true);
+						}
+						else if(resposta==112)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 2 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==113)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 3 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==114)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 4 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==105)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 5 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==106)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 6 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==107)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 7 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==108)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 8 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==109)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 9 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==1010)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 10 perguntas de 10").set('basic', true);
+						}
+					
+	 		}
+ 		}); 
+					exibir();
+			    }
+				
+	 		}
+ 		}); 		
+		}
+		
+		function alterE(){
+		    //pega a alternativa certa do php
+			var alternativa="";
+			var resposta;
+			var alternaE="";
+
+
+			$.ajax({
+				url: 'php/respostaCerta.php',
+				type:'POST',
+				data: {resposta: resposta},
+				success: function(resposta){
+				//recebe a alternativa correta do select do php
+				alternaE=resposta;
+				
+				if (alternaE==e)
+				{
+					if (resposta ==  1)
+					{
+						letra = "A";
+					}
+					else if (resposta ==  2)
+					{
+						letra = "B";
+					}
+					else if (resposta ==  3)
+					{
+						letra = "C";
+					}
+					else if (resposta ==  4)
+					{
+						letra = "D";
+					}
+					else if (resposta ==  5)
+					{
+						letra = "E";
+					}
+					
+					swal({   title: "Uhuul!",   text: "Parabéns, você acertou! A alternativa certa era a letra: " + letra,   imageUrl: "img/certo.png" });
+					
+					$.ajax({
+					url: 'php/pontuacaoCerta.php',
+					type:'POST',
+					data: { 
+						teste:teste, resposta:resposta
+					},
+					success: function(resposta){
+						
+					if(resposta==111)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 1 pergunta de 10").set('basic', true);
+						}
+						else if(resposta==112)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 2 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==113)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 3 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==114)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 4 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==105)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 5 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==106)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 6 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==107)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 7 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==108)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 8 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==109)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 9 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==1010)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 10 perguntas de 10").set('basic', true);
+						}
+					
+	 		}
+ 		}); 
+
+					exibir();
+				}
+				else
+				{
+					if (resposta ==  1)
+					{
+						letra = "A";
+					}
+					else if (resposta ==  2)
+					{
+						letra = "B";
+					}
+					else if (resposta ==  3)
+					{
+						letra = "C";
+					}
+					else if (resposta ==  4)
+					{
+						letra = "D";
+					}
+					else if (resposta ==  5)
+					{
+						letra = "E";
+					}
+					
+					swal({   title: "Aaaah!",   text: "Que pena, você errou. A alternativa certa era a letra: " + letra,   imageUrl: "img/errado.png" });
+					
+					$.ajax({
+					url: 'php/pontuacaoErrada.php',
+					type:'POST',
+					data: { 
+						teste:teste, resposta:resposta
+					},
+					success: function(resposta){
+					
+					if(resposta==111)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 1 pergunta de 10").set('basic', true);
+						}
+						else if(resposta==112)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 2 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==113)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 3 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==114)
+						{
+							alertify.alert("Você não desbloqueou um monstro! Acertou 4 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==105)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 5 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==106)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 6 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==107)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 7 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==108)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 8 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==109)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 9 perguntas de 10").set('basic', true);
+						}
+						else if(resposta==1010)
+						{
+							alertify.alert("Você desbloqueou um monstro! Acertou 10 perguntas de 10").set('basic', true);
+						}
+	 		}
+ 		}); 
+
+					exibir();
+			    }
+				
+	 		}
+ 		}); 		
+		}
+  </script>
+</body>
+</html>

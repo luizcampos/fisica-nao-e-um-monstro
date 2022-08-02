@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Editar</title>
+<link rel="stylesheet" type="text/css" href="css/css.css">
+
+<link href="jquery-mobile/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css" />
+<link href="jquery-mobile/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css" />
+<script src="jquery-mobile/jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="jquery-mobile/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="banco.js"> </script>
+
+</head>
+
+<body>
+<div data-role="page" id="page">
+  <div id="fundo">
+  <div data-role="content">
+  
+  <center>
+  <br /><br /><br />
+  <div class="quadrologin">
+  <br />
+  <form id="frmEdit">
+
+    <label> Nome de usuário: </label>
+	 <div class="quadroform">
+	<input type="text" required name="nome2" id="nome2"> 
+     </div>
+	<!--
+	<br>	
+	<label>Senha:</label>
+	<div class="quadroform">
+	<input type="text" title="Digite uma senha!" required name="senha2">
+	</div>
+-->
+	<br>
+	
+	<br>
+	<div class="quadroentrar">
+	 <input type="submit" data-theme="b" data-icon="arrow-r" data-iconpos="right" class="btn" value="Editar" onclick="edita()"/>
+	 	
+	</div>
+	<a href="minhaconta.html"><img src="img/seta.png" width="40" height="45" /> </a>
+  </form>
+    </div>
+  <script>
+		
+	function edita(){
+		var nome2;
+		
+		$("#frmEdit").submit(function(e){
+ 		e.stopPropagation();
+  		e.preventDefault();
+	  	$.ajax({			//Função AJAX
+			type:'POST',				//Método de envio
+			url:'php/editar.php',			//Arquivo php
+			data:{nome2:$("#nome2").val()},//Dados
+			})
+			.done (function(data){
+				
+				
+					if (data!=0){
+						alert('Editado com sucesso!');
+						window.location.href = "editar.html";
+					}
+					
+				else  if(data==0){
+					alert(data);
+					alert('Desculpe, mas já existe um usuário cadastrado com esse nome. Por favor cadastre-se com outro.');document.location='editar.html';
+					
+					}
+			
+			})
+			})
+		
+		/*
+		var formula = $('#frmEdit').serialize(); //Pega os valores 
+		$.ajax({			//Função AJAX
+			url:'php/editar.php',			//Arquivo php
+			data: formula,				//Dados
+			type:'POST',				//Método de envio
+   			success: function (data){			//Sucesso no AJAX
+			alert(data);
+                		if(data==''||data==0){
+							alert('Usuário e Senha incorretos!');
+							window.location="editar.html";
+						} if(data==1){
+							alert('Editado com sucesso! Seu novo nome de usuário é: ' + data);
+							window.location="editar.html";
+						}
+            		}
+		})
+		return false;	//Evita que a página seja atualizada*/
+	}
+	
+  </script>
+  </div>
+
+
+</div>
+</body>
+</html>

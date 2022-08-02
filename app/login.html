@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Login</title>
+<link rel="stylesheet" type="text/css" href="css/css.css">
+
+<link href="jquery-mobile/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css" />
+<link href="jquery-mobile/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css" />
+<script src="jquery-mobile/jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="jquery-mobile/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+
+<script src="dist/sweetalert-dev.js"></script>
+  <link rel="stylesheet" href="dist/sweetalert.css">
+
+
+</head>
+
+<body>
+<div data-role="page" id="page">
+  <div id="fundo">
+  <div data-role="content">
+  
+  <center>
+  <br />
+  <div class="quadrologin">
+  <br />
+  <img src="img/login.png" width="160px" height="70px">
+  <form  action="" method="post" name="formlogin" id="formlogin" >
+<br />
+    <label for="nome"> Nome de usuário: </font></label>
+	 <div class="quadroform">
+	<input type="text" required name="nome" id="nome" placeholder="Ex: fulano22"> 
+     </div>
+	
+	<br>	
+	<label for="nome">Senha:</font></label>
+	<div class="quadroform">
+	<input type="password" title="Digite uma senha!" required name="senha" id="senha" >
+	</div>
+
+	
+	<div class="quadroentrar">
+	 <input type="submit" value="Entrar" data-theme="b" data-icon="arrow-r" data-iconpos="right" class="btn"  /></font>
+	</div>
+  </form>
+  <h4><a href=""> Esqueceu a senha? </a></h4>
+  <h4><a href="cadastro.html"> Não sou cadastrado </a></h4>
+
+    </div>
+  <script>
+ $(document).ready(function() {
+ 	$("#formlogin").submit(function(e){
+	   e.stopPropagation();
+  		e.preventDefault();
+	  	$.ajax({			//Função AJAX
+			type:'POST',				//Método de envio
+			url:'php/login.php',			//Arquivo php
+			data:{ 
+			nome:$("#nome").val(),
+			senha:$("#senha").val()
+			}//Dados
+			})
+		
+		.done (function(resp){
+				if (resp==1){
+					//$('#erro').hide();
+					    $(function(){
+							
+       				swal("Parabéns!", "Sucesso ao logar!", "success");//swal("Sucesso ao logar!");
+   				 //$("#resposta").append('<div class="acerto"><img src="img/per.png" /> Sucesso ao logar!</div>');  
+					 setTimeout("window.location.assign('menu.html')",2000);
+					 
+					 
+					 });
+
+					}
+				else  if(resp==0){
+						    $(function(){
+								
+								swal("Erro ao logar!", "Usuário ou senha incorretos!");
+       			
+				setTimeout("window.location.assign('login.html')",4000);
+   				 //$("#resposta").append('<div id="erro"><img src="img/per.png" />Erro ao logar!Usuário ou senha incorretos!</div>');
+   					document.formlogin.nome.disabled = 1;
+					document.formlogin.senha.disabled = 1;
+					 })				
+			}
+	})
+	
+	})
+	
+	 
+});
+  </script>
+  </div>
+
+
+</div>
+</body>
+</html>

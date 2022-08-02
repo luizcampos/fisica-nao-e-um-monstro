@@ -1,0 +1,167 @@
+*{
+	margin:0px;
+	padding:0px;
+	font-family: Oswald; 
+}
+
+/*titulo*/
+
+div#titulo{
+	width:100%;
+	margin-top:30px;
+	float:left;
+}
+
+p#header{
+	text-align: center;
+	font-size: 2.5em;
+	color:#9a9a9a;
+}
+
+p#subheader{
+	text-align:left;
+	color:#cecece;
+	margin-top:30px;
+	font-size: 1.3em;
+}
+
+header{
+	margin:20px auto;
+	width:1200px;
+	height:100px;
+}
+
+div.contenedor{
+	width: 200px;
+	height:105px;
+	float:left;
+	-webkit-transition: height .4s;
+}
+
+
+div#um{
+	background-color: #09f;
+}
+
+div#dois{
+background-color: #09f;
+}
+
+div#tres{
+background-color: #09f;
+}
+
+div#quatro{
+background-color: #09f;
+}
+
+div#cinco{
+background-color: #09f;
+	
+}
+
+div#seis{
+background-color: #09f;
+	
+}
+
+
+img.icon{
+	display: block;
+	margin:5px auto;
+	background-color: rgba(255,255,255,.15);
+	width:25px;
+	padding:15px;
+	-webkit-border-radius: 50%;
+	-webkit-box-shadow: 0px 0px 0px 30px rgba(255,255,255,0);
+	-webkit-transition:box-shadow .4s;
+}
+
+p.texto{
+	font-size: 1.2em;
+	color:white;
+	text-align: center;
+	padding-top:10px;
+	opacity: .6;
+	-webkit-transition: padding-top .4s;
+}
+
+div.contenedor:hover{
+	height:130px;
+}
+
+div.contenedor:hover p.texto{
+	padding-top: 30px;
+	opacity: 1;
+}
+
+div.contenedor:hover img.icon{
+	-webkit-box-shadow:0px 0px 0px 0px rgba(255,255,255,.6);
+		
+}
+
+
+div.top li a{color:#FFF; text-decoration:none; padding:5px 10px; display:block; text-align:center;}
+div.top li a:hover{
+background:#666;
+color:#fff;
+-moz-box-shadow:0 3px 10px 0 #666;
+-webkit-box-shadow:0 3px 10px 0 #666;
+text-shadow:0px 0px 5px #fff;
+}
+
+div.top li  ul{
+position:absolute;
+top:70px;
+left:0;
+background-color:#fff;
+display:none;
+}  
+div.top li:hover ul, div.top li.over ul{display:block;}
+
+div.top li ul li{
+border:none;
+display:block;
+width:150px;
+}
+div.top:hover img.icon{
+	-webkit-box-shadow:0px 0px 0px 0px rgba(255,255,255,.6);
+		
+}
+
+#cadastrar{
+
+border-bottom-left-radius:8px;
+border-bottom-left-radius:15px;
+-webkit-border-bottom-left-radius:8px;
+-webkit-border-bottom-left-radius:15px;
+-moz-border-bottom-left-radius:8px;
+-moz--border-bottom-left-radius:15px;
+height:58px;
+width:120px;
+background:#f1f1f1;
+text-align:center;
+position:absolute;
+right:0;
+top:0;
+background:#09f;
+color:#FFF;
+border: 1px solid #06F;
+padding: 3px 7px 2px 7px;
+font-size:18px;
+
+	}
+#cadastrar a {
+	color:#999;
+	font:400 18px Oswald;
+	padding-top:5px;
+	display:block;
+		}
+#cadastrar:hover{
+background:#232323;
+color:#FFF;
+	}
+#cadastrar:hover a{
+	color:#FFF;
+	}
+
